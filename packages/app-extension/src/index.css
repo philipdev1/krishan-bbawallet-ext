@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+body {
+  overflow: hidden;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+#root {
+  overflow: hidden;
+}
+
+.container {
+      position: relative;
+      width: 300px;
+    }
+    
+    .outer-glow {
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(to top right, rgb(167, 243, 208), rgb(187, 247, 208));
+      border-radius: 1rem;
+      filter: blur(24px);
+      opacity: 0.5;
+    }
+    
+    .card {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(4px);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .loading-container {
+      position: relative;
+      width: 4rem;
+      height: 4rem;
+    }
+    
+    .loading-spinner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: rgb(16, 185, 129);
+      animation: spin 1.2s linear infinite;
+    }
+    
+    .loading-spinner:nth-child(2) {
+      border-top-color: transparent;
+      border-right-color: rgb(74, 222, 128);
+      animation-delay: -0.3s;
+    }
+    
+    .loading-spinner:nth-child(3) {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: rgb(167, 243, 208);
+      animation-delay: -0.6s;
+    }
+    
+
+    
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }

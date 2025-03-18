@@ -1,0 +1,53 @@
+{
+  "name": "backpack",
+  "private": true,
+  "workspaces": [
+    "backend/workers/*",
+    "examples/clients/*",
+    "examples",
+    "examples/xnft/*",
+    "examples/xnft-program-library/packages/*",
+    "packages/*",
+    "web"
+  ],
+  "scripts": {
+    "lint:fix": "prettier {examples/xnft,examples/xnft-program-library/packages,packages}/**/*.{ts,tsx,json} --write",
+    "prepare": "husky install",
+    "start": "env-cmd --silent turbo run start --concurrency=20",
+    "start:fresh": "yarn install && yarn clean && yarn install && yarn start",
+    "test": "env-cmd --silent turbo run test -- --passWithNoTests --watchAll=false",
+    "build": "env-cmd --silent turbo run build",
+    "e2e": "env-cmd --silent turbo run e2e",
+    "clean": "npx rimraf {.,backend,examples,packages}/**/{.parcel-cache,.turbo,build,dist,node_modules,yarn-error.log} packages/app-extension/dev"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.20.0",
+    "eslint-plugin-only-warn": "^1.0.3",
+    "eslint-plugin-react": "^7.30.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "turbo": "^1.4.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,css,md,json}": "prettier --write"
+  },
+  "resolutions": {
+    "@solana/web3.js": "1.43.2",
+    "@types/react-dom": "^17.0.0",
+    "@types/react": "^17.0.0",
+    "parcel": "2.7.0",
+    "prettier": "2.7.1",
+    "react-dom": "^17.0.0",
+    "react": "^17.0.0",
+    "rpc-websockets": "7.11.0"
+  },
+  "dependencies": {
+    "@bbachain/wallet-adapter-react": "^0.1.4",
+    "rpc-websockets": "^10.0.0"
+  }
+}
