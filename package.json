@@ -16,7 +16,8 @@
     "start": "env-cmd --silent turbo run start --concurrency=20",
     "start:fresh": "yarn install && yarn clean && yarn install && yarn start",
     "test": "env-cmd --silent turbo run test -- --passWithNoTests --watchAll=false",
-    "build": "env-cmd --silent turbo run build",
+    "build:dependencies": "yarn workspace @coral-xyz/common-public build",
+    "build": "env-cmd --silent yarn build:dependencies && env-cmd --silent turbo run build",
     "e2e": "env-cmd --silent turbo run e2e",
     "clean": "npx rimraf {.,backend,examples,packages}/**/{.parcel-cache,.turbo,build,dist,node_modules,yarn-error.log} packages/app-extension/dev"
   },
