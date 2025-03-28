@@ -6,6 +6,7 @@ import {
   CHANNEL_POPUP_RPC,
   CHANNEL_POPUP_RESPONSE,
   CHANNEL_SOLANA_CONNECTION_RPC_UI,
+  CHANNEL_BBA_CONNECTION_RPC_UI,
   CHANNEL_ETHEREUM_CONNECTION_RPC_UI,
 } from "@coral-xyz/common";
 
@@ -35,7 +36,7 @@ export const backgroundResponder = atom<ChannelAppUiResponder>({
 export const connectionBackgroundClient = selector({
   key: "connectionBackgroundClient",
   get: () => {
-    return ChannelAppUi.client(CHANNEL_SOLANA_CONNECTION_RPC_UI);
+    return ChannelAppUi.client(CHANNEL_BBA_CONNECTION_RPC_UI);
   },
 });
 

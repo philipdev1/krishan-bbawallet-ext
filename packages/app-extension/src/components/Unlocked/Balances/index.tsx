@@ -16,6 +16,7 @@ export function Balances() {
   const { push } = useNavigation();
 
   const onClickTokenRow = (blockchain: Blockchain, token: Token) => {
+    console.log("clicked her");
     push({
       title: `${toTitleCase(blockchain)} / ${token.ticker}`,
       componentId: NAV_COMPONENT_TOKEN,

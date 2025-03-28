@@ -157,3 +157,10 @@ export const solanaPublicKey = selector({
     return get(activeSolanaWallet)?.publicKey ?? null;
   },
 });
+
+export const bbaPublicKey = selector({
+  key: "bbaPublicKey",
+  get: ({ get }) => {
+    return get(activeBbaWallet)?.publicKey ?? null;
+  },
+});

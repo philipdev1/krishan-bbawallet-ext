@@ -4,6 +4,7 @@ export * from "./keyring";
 export * from "./prices";
 export * from "./transaction-request";
 export * from "./solana";
+export { bbaCommitment } from "./bba";
 export * from "./ethereum";
 export * from "./preferences";
 export * from "./client";

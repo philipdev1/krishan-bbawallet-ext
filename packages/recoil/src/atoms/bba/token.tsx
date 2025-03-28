@@ -1,13 +1,13 @@
 import { atomFamily, selector, selectorFamily } from "recoil";
 import { ethers, BigNumber } from "ethers";
-import { TokenInfo } from "@solana/spl-token-registry";
+import { TokenInfo } from "@bbachain/token-registry";
 import { SOL_NATIVE_MINT, WSOL_MINT } from "@coral-xyz/common";
 import { priceData } from "../prices";
 import { splTokenRegistry } from "./token-registry";
 import { SolanaTokenAccountWithKey, TokenData } from "../../types";
 import { anchorContext } from "./wallet";
-import { solanaPublicKey } from "../wallet";
-import { solanaConnectionUrl } from "./preferences";
+import { bbaPublicKey } from "../wallet";
+import { bbaConnectionUrl } from "./preferences";
 
 export const customSplTokenAccounts = atomFamily({
   key: "customSplTokenAccounts",
@@ -23,15 +23,15 @@ export const customSplTokenAccounts = atomFamily({
       }) =>
       async ({ get }: any) => {
         const { provider } = get(anchorContext);
-        console.log("====================================");
-        console.log("provider", provider);
-        console.log("====================================");
+
         //
         // Fetch token data.
         //
+
         try {
           const { tokenAccountsMap, tokenMetadata, nftMetadata } =
             await provider.connection.customSplTokenAccounts(publicKey);
+
           const splTokenAccounts = new Map<string, SolanaTokenAccountWithKey>(
             tokenAccountsMap
           );
@@ -41,7 +41,7 @@ export const customSplTokenAccounts = atomFamily({
             splNftMetadata: new Map(nftMetadata),
           };
         } catch (error) {
-          console.error("could not fetch solana token data", error);
+          console.error("could not fetch bba token data", error);
           return {
             splTokenAccounts: new Map(),
             splTokenMetadata: new Map(),
@@ -65,8 +65,8 @@ export const solanaTokenAccountsMap = atomFamily<
     get:
       ({ tokenAddress }: { tokenAddress: string }) =>
       ({ get }: any) => {
-        const connectionUrl = get(solanaConnectionUrl);
-        const publicKey = get(solanaPublicKey);
+        const connectionUrl = get(bbaConnectionUrl);
+        const publicKey = get(bbaPublicKey);
         const { splTokenAccounts } = get(
           customSplTokenAccounts({ connectionUrl, publicKey })
         );
@@ -81,8 +81,8 @@ export const solanaTokenAccountsMap = atomFamily<
 export const solanaTokenAccountKeys = selector({
   key: "solanaTokenAccountKeys",
   get: ({ get }: any) => {
-    const connectionUrl = get(solanaConnectionUrl);
-    const publicKey = get(solanaPublicKey);
+    const connectionUrl = get(bbaConnectionUrl);
+    const publicKey = get(bbaPublicKey);
     const { splTokenAccounts } = get(
       customSplTokenAccounts({ connectionUrl, publicKey })
     );
@@ -90,7 +90,7 @@ export const solanaTokenAccountKeys = selector({
   },
 });
 
-export const solanaTokenBalance = selectorFamily<TokenData | null, string>({
+export const bbaTokenBalance = selectorFamily<TokenData | null, string>({
   key: "solanaTokenBalance",
   get:
     (tokenAddress: string) =>
@@ -119,7 +119,7 @@ export const solanaTokenBalance = selectorFamily<TokenData | null, string>({
       const price = get(priceData(priceMint)) as any;
       // Convert from BN.js to ethers BigNumber
       // https://github.com/ethers-io/ethers.js/issues/595
-      const nativeBalance = BigNumber.from(tokenAccount.amount.toString());
+      const nativeBalance = BigNumber.from("0.1");
       const displayBalance = ethers.utils.formatUnits(nativeBalance, decimals);
       const usdBalance =
         price && price.usd ? price.usd * parseFloat(displayBalance) : 0;

@@ -1,6 +1,7 @@
 import { selector, selectorFamily } from "recoil";
 import { Blockchain } from "@coral-xyz/common";
 import { solanaTokenBalance, solanaTokenAccountKeys } from "./solana/token";
+import { bbaTokenBalance } from "./bba/token";
 import { ethereumTokenBalance } from "./ethereum/token";
 import { ethereumTokenMetadata } from "./ethereum/token-metadata";
 import { TokenData } from "../types";
@@ -44,10 +45,12 @@ export const blockchainTokenData = selectorFamily<
     ({ address, blockchain }: { address: string; blockchain: Blockchain }) =>
     ({ get }) => {
       switch (blockchain) {
-        case Blockchain.SOLANA:
-          return get(solanaTokenBalance(address));
-        case Blockchain.ETHEREUM:
-          return get(ethereumTokenBalance(address));
+        case Blockchain.BBA:
+          return get(bbaTokenBalance(address));
+        // case Blockchain.SOLANA:
+        //   return get(solanaTokenBalance(address));
+        // case Blockchain.ETHEREUM:
+        //   return get(ethereumTokenBalance(address));
         default:
           throw new Error(`unsupported blockchain: ${blockchain}`);
       }
@@ -64,6 +67,8 @@ export const blockchainTokenAddresses = selectorFamily({
     ({ get }) => {
       switch (blockchain) {
         case Blockchain.SOLANA:
+          return get(solanaTokenAccountKeys);
+        case Blockchain.BBA:
           return get(solanaTokenAccountKeys);
         case Blockchain.ETHEREUM:
           const ethTokenMetadata = get(ethereumTokenMetadata)();
@@ -111,14 +116,17 @@ export const totalBalance = selector({
   get: ({ get }) => {
     const solana = get(blockchainTotalBalance(Blockchain.SOLANA));
     const ethereum = get(blockchainTotalBalance(Blockchain.ETHEREUM));
-    const totalBalance = solana.totalBalance + ethereum.totalBalance;
-    const totalChange = solana.totalChange + ethereum.totalChange;
+    const bba = get(blockchainTotalBalance(Blockchain.BBA));
+    const totalBalance =
+      solana.totalBalance + ethereum.totalBalance + bba.totalBalance;
+    const totalChange =
+      solana.totalChange + ethereum.totalChange + bba.totalChange;
     const oldBalance = totalBalance - totalChange;
     const percentChange = totalChange / oldBalance;
     return {
-      totalBalance: parseFloat(totalBalance.toFixed(2)),
-      totalChange: parseFloat(totalChange.toFixed(2)),
-      percentChange: parseFloat(percentChange.toFixed(2)),
+      totalBalance: parseFloat("0.00"),
+      totalChange: parseFloat("0.00"),
+      percentChange: parseFloat("0.00"),
     };
   },
 });

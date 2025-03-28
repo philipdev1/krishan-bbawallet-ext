@@ -48,6 +48,7 @@
     "rpc-websockets": "7.11.0"
   },
   "dependencies": {
+    "@bbachain/token-registry": "^0.1.5",
     "@bbachain/wallet-adapter-react": "^0.1.4",
     "rpc-websockets": "^10.0.0"
   }

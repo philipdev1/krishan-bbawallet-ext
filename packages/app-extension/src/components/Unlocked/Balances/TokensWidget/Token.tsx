@@ -92,6 +92,8 @@ function TokenHeader({ blockchain, address }: SearchParamsFor.Token["props"]) {
 
   const [token] = useLoader(blockchainTokenData({ blockchain, address }), null);
 
+  alert(token);
+
   if (!token) return <></>;
 
   const percentClass =

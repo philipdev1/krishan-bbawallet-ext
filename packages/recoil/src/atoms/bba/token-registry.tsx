@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
+import { TokenListProvider, TokenInfo } from "@bbachain/token-registry";
 import { WSOL_MINT, SOL_NATIVE_MINT } from "@coral-xyz/common";
 
 export const SOL_LOGO_URI =
@@ -12,7 +12,7 @@ export const splTokenRegistry = atom<Map<string, TokenInfo> | null>({
     get: async () => {
       const tokens = await new TokenListProvider().resolve();
       const tokenList = tokens
-        .filterByClusterSlug("mainnet-beta") // TODO: get network atom.
+        .filterByClusterSlug("mainnet") // TODO: get network atom.
         .getList();
       const tokenMap = tokenList.reduce((map, item) => {
         if (item.address === WSOL_MINT) {

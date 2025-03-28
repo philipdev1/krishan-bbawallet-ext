@@ -59,6 +59,7 @@ import {
   UI_RPC_METHOD_SOLANA_CONNECTION_URL_READ,
   UI_RPC_METHOD_SOLANA_CONNECTION_URL_UPDATE,
   UI_RPC_METHOD_SOLANA_COMMITMENT_READ,
+  UI_RPC_METHOD_BBA_COMMITMENT_READ,
   UI_RPC_METHOD_SOLANA_COMMITMENT_UPDATE,
   UI_RPC_METHOD_SOLANA_SIMULATE,
   UI_RPC_METHOD_SOLANA_SIGN_TRANSACTION,
@@ -78,7 +79,7 @@ import {
   BACKEND_EVENT,
   CHANNEL_POPUP_RPC,
   CHANNEL_POPUP_NOTIFICATIONS,
-  UI_RPC_METHOD_BBA_CONNECTION_URL_READ
+  UI_RPC_METHOD_BBA_CONNECTION_URL_READ,
 } from "@coral-xyz/common";
 import type { KeyringStoreState } from "@coral-xyz/recoil";
 import type { Backend } from "../backend/core";
@@ -261,8 +262,12 @@ async function handle<T = any>(
       return await handleSolanaSignMessage(ctx, params[0], params[1]);
     case UI_RPC_METHOD_SOLANA_COMMITMENT_READ:
       return await handleSolanaCommitmentRead(ctx);
+    case UI_RPC_METHOD_BBA_COMMITMENT_READ:
+      return await handleBbaCommitmentRead(ctx);
+
     case UI_RPC_METHOD_SOLANA_COMMITMENT_UPDATE:
       return await handleSolanaCommitmentUpdate(ctx, params[0]);
+
     case UI_RPC_METHOD_SOLANA_EXPLORER_READ:
       return await handleSolanaExplorerRead(ctx);
     case UI_RPC_METHOD_SOLANA_EXPLORER_UPDATE:
@@ -606,6 +611,13 @@ async function handleSolanaCommitmentRead(
   ctx: Context<Backend>
 ): Promise<RpcResponse<string>> {
   const resp = await ctx.backend.solanaCommitmentRead();
+  return [resp];
+}
+
+async function handleBbaCommitmentRead(
+  ctx: Context<Backend>
+): Promise<RpcResponse<string>> {
+  const resp = await ctx.backend.bbaCommitmentRead();
   return [resp];
 }
 

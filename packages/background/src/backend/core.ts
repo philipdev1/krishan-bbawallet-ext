@@ -229,6 +229,11 @@ export class Backend {
       : "processed";
   }
 
+  async bbaCommitmentRead(): Promise<Commitment> {
+    const data = await store.getWalletData();
+    return data.bba && data.bba.commitment ? data.bba.commitment : "processed";
+  }
+
   async solanaCommitmentUpdate(commitment: Commitment): Promise<string> {
     const data = await store.getWalletData();
     await store.setWalletData({
@@ -339,7 +344,7 @@ export class Backend {
     return data.ethereum && data.ethereum.chainId
       ? data.ethereum.chainId
       : // Default to mainnet
-      "0x1";
+        "0x1";
   }
 
   async ethereumChainIdUpdate(chainId: string): Promise<string> {

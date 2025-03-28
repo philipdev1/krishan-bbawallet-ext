@@ -1342,6 +1342,13 @@
     "@bbachain/buffer-layout-utils" "^0.0.1"
     buffer "^6.0.3"
 
+"@bbachain/token-registry@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@bbachain/token-registry/-/token-registry-0.1.5.tgz#b6ec4a0d4ca1b7f3b43f0ee915fe8405dec0c05f"
+  integrity sha512-VJgJeCU+PsgrF27dfjPywHb7BwsGJwtNZb6elZ3jzRFUUMHL31wNv9yjX+pPGJ0nPMMeRIwjaDkX9+vkJlnwoA==
+  dependencies:
+    cross-fetch "3.0.6"
+
 "@bbachain/wallet-adapter-base@^0.1.1", "@bbachain/wallet-adapter-base@^0.1.4":
   version "0.1.4"
   resolved "https://registry.npmjs.org/@bbachain/wallet-adapter-base/-/wallet-adapter-base-0.1.4.tgz"

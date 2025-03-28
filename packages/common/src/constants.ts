@@ -21,6 +21,7 @@ export const CHANNEL_SOLANA_RPC_RESPONSE = "channel-solana-rpc-response";
 export const CHANNEL_SOLANA_NOTIFICATION = "channel-solana-notification";
 export const CHANNEL_SOLANA_CONNECTION_RPC_UI =
   "channel-solana-connection-rpc-ui";
+export const CHANNEL_BBA_CONNECTION_RPC_UI = "channel-bba-connection-rpc-ui";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_REQUEST =
   "channel-solana-connection-injected-request";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_RESPONSE =
@@ -177,6 +178,8 @@ export const UI_RPC_METHOD_SOLANA_CONNECTION_URL_UPDATE =
   "ui-rpc-method-solana-connection-url-update";
 export const UI_RPC_METHOD_SOLANA_COMMITMENT_READ =
   "ui-rpc-method-solana-commitment-read";
+export const UI_RPC_METHOD_BBA_COMMITMENT_READ =
+  "ui-rpc-method-bba-commitment-read";
 export const UI_RPC_METHOD_SOLANA_COMMITMENT_UPDATE =
   "ui-rpc-method-solana-commitment-update";
 export const UI_RPC_METHOD_SOLANA_SIMULATE = "ui-rpc-method-solana-simulate";
@@ -351,6 +354,7 @@ export const SOLANA_CONNECTION_RPC_SEND_RAW_TRANSACTION =
   "solana-send-raw-transaction";
 export const SOLANA_CONNECTION_RPC_CONFIRM_TRANSACTION =
   "solana-confirm-transaction";
+export const BBA_CONNECTION_RPC_CONFIRM_TRANSACTION = "bba-confirm-transaction";
 export const SOLANA_CONNECTION_RPC_GET_PARSED_TRANSACTIONS =
   "solana-get-parsed-transactions";
 export const SOLANA_CONNECTION_RPC_GET_PARSED_TRANSACTION =
@@ -361,8 +365,12 @@ export const SOLANA_CONNECTION_RPC_GET_CONFIRMED_SIGNATURES_FOR_ADDRESS_2 =
   "solana-get-confirmed-signatures-for-address-2";
 export const SOLANA_CONNECTION_RPC_CUSTOM_SPL_TOKEN_ACCOUNTS =
   "solana-custom-spl-token-accounts";
+export const BBA_CONNECTION_RPC_CUSTOM_SPL_TOKEN_ACCOUNTS =
+  "bba-custom-spl-token-accounts";
 export const SOLANA_CONNECTION_RPC_GET_PROGRAM_ACCOUNTS =
   "solana-get-program-accounts";
+export const BBA_CONNECTION_RPC_GET_PROGRAM_ACCOUNTS =
+  "bba-get-program-accounts";
 export const SOLANA_CONNECTION_RPC_GET_FEE_FOR_MESSAGE =
   "solana-get-fee-for-message";
 export const SOLANA_CONNECTION_RPC_GET_MINIMUM_BALANCE_FOR_RENT_EXEMPTION =
